@@ -1,0 +1,17 @@
+name: "kubectl"
+version: "0.1.0"
+usage: scan kubectl resources
+description: |-
+  A Trivy plugin that scans the images of a kubernetes resource.
+  Usage: trivy kubectl TYPE[.VERSION][.GROUP] NAME
+platforms:
+  - selector: # optional
+      os: darwin
+      arch: amd64
+    uri: ./trivy-kubectl # where the execution file is (local file, http, git, etc.)
+    bin: ./trivy-kubectl # path to the execution file
+  - selector: # optional
+      os: linux
+      arch: amd64
+    uri: https://github.com/aquasecurity/trivy-plugin-kubectl/releases/download/v0.1.0/trivy-kubectl.tar.gz
+    bin: ./trivy-kubectl
