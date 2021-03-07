@@ -1,4 +1,5 @@
 name: "kubectl"
+repository: github.com/aquasecurity/trivy-plugin-kubectl
 version: "0.1.0"
 usage: scan kubectl resources
 description: |-
