@@ -51,6 +51,8 @@ done
 
 images=$(kubectl get "${KUBECTL_PARAM[@]}" -oyaml | sed -nE 's@[^\w]*image: ([a-zA-Z0-9/:])@\1@p' | uniq)
 while read -r image; do
-  scan "${TRIVY_PARAM[@]}" "$image"
+  if [ -n "$image" ]; then
+    scan "${TRIVY_PARAM[@]}" "$image"
+  fi
 done <<< "$images"
 
