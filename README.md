@@ -14,13 +14,13 @@ Options:
 
 Examples:
   # Scan a Pod
-  kubectl trivy pod mypod
+  trivy kubectl pod mypod
 
   # Scan a Deployment
-  kubectl trivy deployment mydeployment -n mynamespace
+  trivy kubectl deployment mydeployment -n mynamespace
 
   # Scan a Job and filter by severity
-  kubectl trivy job myjob -n mynamespace -- --severity CRITICAL
+  trivy kubectl job myjob -n mynamespace -- --severity CRITICAL
 ```
 
 ## Usage
@@ -28,12 +28,12 @@ Trivy's options need to be passed after `--`.
 
 ```
 # Scan a Pod
-$ kubectl trivy pod mypod
+$ trivy kubectl pod mypod
 
 # Scan a Deployment
-$ kubectl trivy deployment mydeployment -n mynamespace
+$ trivy kubectl deployment mydeployment -n mynamespace
 
 # Scan a Job and filter by severity
-$ kubectl trivy job myjob -n mynamespace -- --severity CRITICAL
+$ trivy kubectl job myjob -n mynamespace -- --severity CRITICAL
 ```
 
