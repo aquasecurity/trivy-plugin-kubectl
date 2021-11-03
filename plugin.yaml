@@ -16,3 +16,8 @@ platforms:
       arch: amd64
     uri: https://github.com/aquasecurity/trivy-plugin-kubectl/releases/download/v0.1.0/trivy-kubectl.tar.gz
     bin: ./trivy-kubectl
+  - selector:
+      os: darwin
+      arch: arm64
+    uri: ./trivy-kubectl
+    bin: ./trivy-kubectl
