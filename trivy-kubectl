@@ -3,21 +3,16 @@
 # Usage
 function usage() {
   cat << EOS >&2
-Usage: trivy kubectl [-h,--help] TYPE NAME [TRIVY OPTION]
- A Trivy plugin that scans the images of a kubernetes resource.
+Usage: trivy docker [-h,--help] TYPE NAME [TRIVY OPTION]
+ A Trivy plugin that scans the images of a docker resource.
 
 Options:
   -h, --help    Show usage.
 
 Examples:
-  # Scan a Pod
-  trivy kubectl pod mypod
+  # Scan the images
+  trivy docker 
 
-  # Scan a Deployment
-  trivy kubectl deployment mydeployment -n mynamespace
-
-  # Scan a Job and filter by severity
-  trivy kubectl job myjob -n mynamespace -- --severity CRITICAL
 EOS
   exit
 }
@@ -31,7 +26,7 @@ if [[ ($# -eq 0) || ($1 == "--help") || ($1 == "-h") ]]; then
   usage
 fi
 
-KUBECTL_PARAM=()
+DOCKER_PARAM=()
 for opt in "$@"; do
   case "${opt}" in
     '--' )
@@ -41,7 +36,7 @@ for opt in "$@"; do
       ;;
     * )
       if [ -n "$1" ]; then
-        KUBECTL_PARAM+=("$1")
+        DOCKER_PARAM+=("$1")
       fi
       shift
       ;;
@@ -49,7 +44,7 @@ for opt in "$@"; do
 done
 
 
-images=$(kubectl get "${KUBECTL_PARAM[@]}" -oyaml | sed -nE 's@[^\w]*image: ([a-zA-Z0-9/:])@\1@p' | uniq)
+images=$(docker images "${DOCKER_PARAM[@]}" {{'.Repository'}}:{{'.Tag'}} | uniq)
 while read -r image; do
   if [ -n "$image" ]; then
     scan "${TRIVY_PARAM[@]}" "$image"
