@@ -22,6 +22,10 @@ EOS
   exit
 }
 
+function test {
+console.log("Testing")
+}
+
 function scan {
   trivy image $@
 }
