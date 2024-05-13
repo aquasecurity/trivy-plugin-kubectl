@@ -1,7 +1,8 @@
 name: "kubectl"
-repository: github.com/aquasecurity/trivy-plugin-kubectl
 version: "0.1.0"
-usage: scan kubectl resources
+repository: github.com/aquasecurity/trivy-plugin-kubectl
+maintainer: aquasecurity
+summary: Scan kubectl resources
 description: |-
   A Trivy plugin that scans the images of a kubernetes resource.
   Usage: trivy kubectl TYPE[.VERSION][.GROUP] NAME
